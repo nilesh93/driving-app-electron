@@ -1,7 +1,6 @@
 {
-	"name":"myapp",
-	"branch":"master",
-	"database":"database",
-	"title":"My App",
-	"type":"simple"
+    "name": "Driving",
+    "database": "dbName",
+    "title": "Driving School Admin",
+    "type": "simple"
 }
