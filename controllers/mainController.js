@@ -1,5 +1,5 @@
 "use strict";
-app.controller("mainController", function($scope, $location){
-	$scope.app = basel.config;
-	$scope.menus = basel.menu();
+angular.module('driving-school.main',[])
+.controller("mainController", function($scope, $location){
+	console.log("controller works");
 });

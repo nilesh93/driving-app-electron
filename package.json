@@ -35,6 +35,8 @@
   "title": "Driving School Admin",
   "type": "simple",
   "dependencies": {
-    "mdbootstrap": "^4.2.0"
+    "angular-ui-router": "^0.3.2",
+    "mdbootstrap": "^4.2.0",
+    "tether": "^1.4.0"
   }
 }

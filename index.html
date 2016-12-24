@@ -1,81 +1,45 @@
-<html ng-app="cdg" ng-controller="mainController">
+<html ng-app="driving-school" ng-controller="mainController">
 
 <head>
   <title>{{app.title}}</title>
 
   <link rel="stylesheet" type="text/css" href="./node_modules/mdbootstrap/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="./node_modules/mdbootstrap/css/mdb.css">
-
+  <link rel="stylesheet" type="text/css" href="./node_modules/mdbootstrap/css/mdb.min.css">
+  <link rel="stylesheet" href="./css/compiled.css">
+  <link rel="stylesheet" href="./css/custom.css">
 
 
   <!-- jQuery -->
-  <script>window.$ = window.jQuery = require('jquery');</script>
+  <script>
+    window.$ = window.jQuery = require('jquery');
 
-  <!-- Bootstrap -->
-  <script src="./node_modules/mdbootstrap/js/jquery-3.1.1.js"></script>
-  <script src="./node_modules/mdbootstrap/js/bootstrap.js"></script>
+  </script>
 
-  <!-- Angular -->
-  <script src="node_modules/angular/angular.js"></script>
-  <!-- Angular - Pagination -->
-  <script src="node_modules/angular-utils-pagination/dirPagination.js"></script>
+<!-- Bootstrap -->
+<script src="./node_modules/mdbootstrap/js/mdb.js"></script>
+<script src="./node_modules/tether/dist/js/tether.js"></script>
+<script src="./node_modules/mdbootstrap/js/bootstrap.js"></script>
 
-  <!-- App -->
-  <script src="app.js"></script>
 
-  <!-- Controllers -->
+
+<!-- Angular -->
+<script src="./node_modules/angular/angular.js"></script>
+<!-- Angular - Pagination -->
+<script src="./node_modules/angular-utils-pagination/dirPagination.js"></script>
+<!--<script src="./node_modules/angular-ui-router/release/angular-ui-router.js"></script>-->
+
+<!-- App -->
+<!--<script src="app.js"></script>
+ 
   <script src="controllers/mainController.js"></script>
-  <script src="controllers/exampleController.js"></script>
+  <script src="controllers/exampleController.js"></script>-->
+
+<script src="./app.js"></script>
 </head>
 
-<body>
+<body style="background-color: #ECEFF1">
 
-
-  <!--Navbar-->
-  <nav class="navbar navbar-dark bg-primary">
-
-    <!-- Collapse button-->
-    <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx2">
-        <i class="fa fa-bars"></i>
-    </button>
-
-    <div class="container">
-
-      <!--Collapse content-->
-      <div class="collapse navbar-toggleable-xs" id="collapseEx2">
-        <!--Navbar Brand-->
-        <a class="navbar-brand">Navbar</a>
-        <!--Links-->
-        <ul class="nav   navbar-nav navbar-right"  style="margin-left:10rem">
-          <li class="nav-item active">
-            <a class="nav-link">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">Pricing</a>
-          </li>
-          <li class="nav-item btn-group">
-            <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <a class="dropdown-item">Action</a>
-              <a class="dropdown-item">Another action</a>
-              <a class="dropdown-item">Something else here</a>
-            </div>
-          </li>
-        </ul>
-     
-      </div>
-      <!--/.Collapse content-->
-
-    </div>
-
-  </nav>
-  <!--/.Navbar-->
-
-  <!-- Onde será carregada a view -->
-  <div ng-view="" class="container"></div>
+  <div ui-view="layout" class=""></div>
 
 </body>
 

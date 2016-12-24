@@ -1,28 +1,43 @@
- var $routeProviderReference;
- var app = angular.module('cdg', [require('angular-route'),'angularUtils.directives.dirPagination']);
- var basel = require('basel-cli');
- var routes = basel.routes();
+require('./controllers/mainController');
 
- app.config(['$routeProvider', function($routeProvider) {
- 	$routeProviderReference = $routeProvider;
- }]);
+angular.module('driving-school', [
+    require('angular-ui-router'),
+    'angularUtils.directives.dirPagination',
 
- app.run(['$rootScope', '$http', '$route', function($rootScope, $http, $route) {
-    //getting routes
-    angular.forEach(routes, function (route) {
-    	$routeProviderReference.when( route.when, route.data );
+
+    //controllers
+    'driving-school.main'
+
+])
+    .config(($stateProvider, $urlRouterProvider) => {
+
+        $urlRouterProvider.otherwise("/");
+        $stateProvider
+            .state('main', {
+                abstract: true,
+                views: {
+                    layout: {
+                        templateUrl: './views/main.layout.html'
+                    }
+                }
+            }).state('login', {
+                abstract: false,
+                views: {
+                    layout: {
+                        templateUrl: './views/main.login.html'
+                    }
+                }
+            })
+            .state('customer-list', {
+                templateUrl: './views/customers/customers.list.html',
+                parent: 'main'
+            })
+            .state('customer-view', {
+                templateUrl: './views/customers/customers.view.html',
+                parent: 'main'
+            });
+    })
+    .run(($state) => {
+        console.log('app works');
+        $state.go('customer-view');
     });
-
-    /** 
-    *	For new routes:
-    *	$routeProviderReference.when('/when',{
-	*		controller: 'yourController',
-	*		templateUrl: 'your-view.html'
-    *   })
-    *
-    */
-
-
-    $routeProviderReference.otherwise({ redirectTo: '/' });
-    $route.reload();
-}]);
