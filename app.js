@@ -39,5 +39,5 @@ angular.module('driving-school', [
     })
     .run(($state) => {
         console.log('app works');
-        $state.go('customer-view');
+        $state.go('login');
     });
