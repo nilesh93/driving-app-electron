@@ -22,7 +22,7 @@
     "build": "electron-packager . --all"
   },
   "devDependencies": {
-    "angular": "^1.5.1",
+    "angular": "1.5.10",
     "angular-route": "^1.5.1",
     "angular-utils-pagination": "^0.11.0",
     "basel-cli": "*",
@@ -36,12 +36,13 @@
   "title": "Driving School Admin",
   "type": "simple",
   "dependencies": {
-    "angular-animate": "^1.6.1",
-    "angular-aria": "^1.6.1",
+    "angular-animate": "1.5.10",
+    "angular-aria": "1.5.10",
     "angular-material": "^1.1.1",
     "angular-material-datetimepicker": "^1.4.0",
     "angular-ui-router": "^0.3.2",
     "install": "^0.8.4",
+    "material-steppers": "^1.0.3",
     "mdPickers": "^0.7.5",
     "mdbootstrap": "^4.2.0",
     "moment": "^2.17.1",

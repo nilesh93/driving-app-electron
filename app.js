@@ -1,17 +1,22 @@
 var moment = require('moment');
 
- 
+require('angular');
+require('angular-utils-pagination');
 require('angular-material');
-require('angular-material-datetimepicker');
+require('angular-animate');
+require('angular-aria');
+require('material-steppers');
 
 require('./controllers/mainController');
 
 angular.module('driving-school', [
     require('angular-ui-router'),
     'angularUtils.directives.dirPagination',
- 
     'ngMaterial',
-    'ngMaterialDatePicker',
+    'ngAnimate',
+    'ngAria',
+    'mdSteppers',
+
 
 
     //controllers
@@ -40,11 +45,16 @@ angular.module('driving-school', [
             .state('customer-list', {
                 templateUrl: './views/customers/customers.list.html',
                 parent: 'main',
-                controller:'mainController as vm'
+
             })
             .state('customer-view', {
                 templateUrl: './views/customers/customers.view.html',
                 parent: 'main'
+            })
+            .state('customer-new', {
+                templateUrl: './views/customers/customers.create.html',
+                parent: 'main',
+                controller: 'mainController as vm'
             });
     })
     .run(($state) => {

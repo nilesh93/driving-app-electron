@@ -1,5 +1,5 @@
 <!--Navbar-->
-<nav class="navbar navbar-dark bg-primary">
+<nav class="navbar navbar-fixed-top navbar-dark bg-primary">
 
 
 
@@ -9,11 +9,17 @@
         <div class="   ">
             <!--Navbar Brand-->
             <a class="navbar-brand">Driving School Application</a>
+            
             <!--Links-->
             <ul class="nav   navbar-nav  nav-right-flex">
-                <li class="nav-item active">
-                    <a class="nav-link">Customers</a>
+                <li class="nav-item btn-group active">
+                    <a class="nav-link dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Customers</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <a ui-sref="customer-list" class="dropdown-item">View All</a>
+                        <a ui-sref="customer-new" class="dropdown-item">Create New</a>
+                    </div>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link">Payments</a>
                 </li>
@@ -37,8 +43,13 @@
 </nav>
 
 <div class="container">
- 
-        <div ui-view=""   style="padding-top:3rem"></div>
-    </div>
+
+<ol class="breadcrumb" style="padding-top:5rem">
+  <li class="breadcrumb-item"><a href="#">Home</a></li>
+  <li class="breadcrumb-item"><a href="#">Library</a></li>
+  <li class="breadcrumb-item active">Data</li>
+</ol>
+    <div ui-view="" ></div>
+</div>
 
 </div>
