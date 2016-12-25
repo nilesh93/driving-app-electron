@@ -1,0 +1,46 @@
+<html ng-app="driving-school" ng-controller="mainController">
+
+<head>
+  <title>{{app.title}}</title>
+
+  <link rel="stylesheet" type="text/css" href="./node_modules/mdbootstrap/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="./node_modules/mdbootstrap/css/mdb.min.css">
+  <link rel="stylesheet" href="./css/compiled.css">
+  <link rel="stylesheet" href="./css/custom.css">
+
+
+  <!-- jQuery -->
+  <script>
+    window.$ = window.jQuery = require('jquery');
+
+  </script>
+
+<!-- Bootstrap -->
+<script src="./node_modules/mdbootstrap/js/mdb.js"></script>
+<script src="./node_modules/tether/dist/js/tether.js"></script>
+<script src="./node_modules/mdbootstrap/js/bootstrap.js"></script>
+
+
+
+<!-- Angular -->
+<script src="./node_modules/angular/angular.js"></script>
+<!-- Angular - Pagination -->
+<script src="./node_modules/angular-utils-pagination/dirPagination.js"></script>
+<!--<script src="./node_modules/angular-ui-router/release/angular-ui-router.js"></script>-->
+
+<!-- App -->
+<!--<script src="app.js"></script>
+ 
+  <script src="controllers/mainController.js"></script>
+  <script src="controllers/exampleController.js"></script>-->
+
+<script src="./app.js"></script>
+</head>
+
+<body style="background-color: #ECEFF1">
+
+  <div ui-view="layout" class=""></div>
+
+</body>
+
+</html>

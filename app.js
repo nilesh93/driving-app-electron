@@ -35,7 +35,16 @@ angular.module('driving-school', [
             .state('customer-view', {
                 templateUrl: './views/customers/customers.view.html',
                 parent: 'main'
-            });
+            })
+            .state('payment-list', {
+                templateUrl: './views/payments/payments.list.html',
+                parent: 'main'
+            })
+            .state('attendence-list', {
+                templateUrl: './views/attendence/attendence.list.html',
+                parent: 'main'
+            })
+            ;
     })
     .run(($state) => {
         console.log('app works');
