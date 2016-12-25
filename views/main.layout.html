@@ -9,32 +9,35 @@
         <div class="   ">
             <!--Navbar Brand-->
             <a class="navbar-brand">Driving School Application</a>
-            
+
             <!--Links-->
             <ul class="nav   navbar-nav  nav-right-flex">
- 
+                <li class="nav-item" ui-sref-active="active">
+                    <a class="nav-link" href=""> Dashboard</a>
+                </li>
                 <li class="nav-item btn-group active">
                     <a class="nav-link dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Customers</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <a ui-sref="customer-list" class="dropdown-item">View All</a>
-                        <a ui-sref="customer-new" class="dropdown-item">Create New</a>
+                        <a ui-sref="customer-list" class="dropdown-item">Search</a>
+                        <a ui-sref="customer-new" class="dropdown-item">New Customer</a>
                     </div>
                 </li>
 
-                <li class="nav-item" ui-sref-active="active">
-                    <a class="nav-link" ui-sref="payment-list">Payments</a>
- 
-                </li>
-                <li class="nav-item" ui-sref-active="active">
-                    <a class="nav-link" href="" ui-sref="attendence-list">Attendance</a>
-                </li>
-                <li class="nav-item btn-group">
-                    <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Logout</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <a class="dropdown-item">Logout</a>
-
+                <li class="nav-item btn-group  ">
+                    <a class="nav-link dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Payments</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <a ui-sref="payment-list" class="dropdown-item">Search</a>
+                        <a ui-sref="payment-add" class="dropdown-item">New Payment</a>
                     </div>
                 </li>
+
+                <!--<li class="nav-item" ui-sref-active="active">
+                    <a class="nav-link" href=""> Settings</a>
+                </li>-->
+                <li class="nav-item" ui-sref-active="active">
+                    <a class="nav-link" href="" ui-sref="login"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a>
+                </li>
+
             </ul>
 
         </div>
@@ -46,12 +49,12 @@
 
 <div class="container">
 
-<ol class="breadcrumb" style="padding-top:5rem">
-  <li class="breadcrumb-item"><a href="#">Home</a></li>
-  <li class="breadcrumb-item"><a href="#">Library</a></li>
-  <li class="breadcrumb-item active">Data</li>
+    <ol class="breadcrumb" style="padding-top:5rem">
+<li class="breadcrumb-item"><a href="#">Home</a></li>
+<li class="breadcrumb-item"><a href="#">Library</a></li>
+<li class="breadcrumb-item active">Data</li>
 </ol>
-    <div ui-view="" ></div>
+<div ui-view=""></div>
 </div>
 
 </div>

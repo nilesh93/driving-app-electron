@@ -23,8 +23,8 @@ angular.module('driving-school', [
     'driving-school.main'
 
 ])
-    .config(($stateProvider, $urlRouterProvider) => {
-
+    .config(($stateProvider, $mdAriaProvider, $urlRouterProvider) => {
+        $mdAriaProvider.disableWarnings();
         $urlRouterProvider.otherwise("/");
         $stateProvider
             .state('main', {
@@ -61,6 +61,10 @@ angular.module('driving-school', [
                 templateUrl: './views/payments/payments.list.html',
                 parent: 'main'
             })
+            .state('payment-add', {
+                templateUrl: './views/payments/payments.create.html',
+                parent: 'main'
+            })
             .state('attendence-list', {
                 templateUrl: './views/attendence/attendence.list.html',
                 parent: 'main'
@@ -69,5 +73,5 @@ angular.module('driving-school', [
     })
     .run(($state) => {
         console.log('app works');
-        $state.go('login');
+        $state.go('customer-view');
     });

@@ -1,0 +1,62 @@
+<br>
+<div class="card">
+    <div class="card-block">
+
+
+
+        <div class="form-header red  ">
+            <h4>Create New Payment</h4>
+        </div>
+
+        <div class="row" style="padding-bottom: 1rem">
+<div class="col-md-4">
+    <div class="md-form">
+        <md-datepicker ng-model="myDate" md-placeholder="Payment Date"></md-datepicker>
+        <label class="active" style="padding-left:4rem">Payment Date</label>
+</div>
+</div>
+<div class="col-md-4">
+    <div class="md-form">
+        <label class="active">Payment Type</label>
+        <md-select style="margin-top: 3px" aria-label="" ng-model="ctrl.userState">
+<md-option ng-value="'Income'">
+    Income
+</md-option>
+<md-option ng-value="'Expenditure'">
+    Expenditure
+</md-option>
+</md-select>
+</div>
+</div>
+
+</div>
+
+<div class="row" style="padding : 1rem">
+<div class="col-md-6">
+    <div class="md-form">
+        <label class="active">Select Customer</label>
+        <br>
+        <md-autocomplete ng-disabled="ctrl.isDisabled" md-no-cache="ctrl.noCache" md-selected-item="ctrl.selectedItem" md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+            md-search-text="ctrl.searchText" md-selected-item-change="ctrl.selectedItemChange(item)" md-items="item in ctrl.querySearch(ctrl.searchText)"
+            md-item-text="item.display" md-min-length="0" placeholder="What is your favorite US state?">
+            <md-item-template>
+                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+            </md-item-template>
+            <md-not-found>
+                No states matching "{{ctrl.searchText}}" were found.
+                <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+            </md-not-found>
+        </md-autocomplete>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="md-form">
+
+        <textarea rows="3" type="text" placeholder="Enter Additional Details" class="md-textarea"></textarea>
+        <label class="active">Payment Remarks</label>
+    </div>
+</div>
+</div>
+
+</div>
+</div>
