@@ -2,6 +2,7 @@ var electron = require('electron');
 var app = electron.app;
 var BrowserWindow = electron.BrowserWindow;
 
+require('electron-reload')(__dirname);
 // referência global para manter a instância da janela até que sejam fechadas pelo usuário então ele irá ser fechado quando o JavaScript fizer Garbage collection
 var mainWindow = null;
 
