@@ -8,6 +8,8 @@ require('angular-aria');
 require('material-steppers');
 
 require('./controllers/mainController');
+require('./controllers/customer.controller');
+
 
 angular.module('driving-school', [
     require('angular-ui-router'),
@@ -20,7 +22,8 @@ angular.module('driving-school', [
 
 
     //controllers
-    'driving-school.main'
+    'driving-school.main',
+    'customer.list'
 
 ])
     .config(($stateProvider, $mdAriaProvider, $urlRouterProvider) => {
@@ -44,6 +47,7 @@ angular.module('driving-school', [
             })
             .state('customer-list', {
                 templateUrl: './views/customers/customers.list.html',
+                controller:'CustomerCtrl as vm',
                 parent: 'main',
 
             })
@@ -73,5 +77,5 @@ angular.module('driving-school', [
     })
     .run(($state) => {
         console.log('app works');
-        $state.go('customer-view');
+        $state.go('customer-list');
     });
