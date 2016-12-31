@@ -4,82 +4,111 @@
 
 
 
-        <div class="form-header green  ">
-            <h4>Create New Customer</h4>
-        </div>
+        <form class="form-horizontal  " name="CustomerForm" ng-submit='vm.saveCustomer()'>
 
-        <div class="row" style="padding-bottom: 1rem">
-<div class="col-md-4">
-    <div class="md-form">
-        <md-datepicker ng-model="myDate" md-placeholder="Join Date"></md-datepicker>
-        <label class="active" style="padding-left:4rem">Join Date</label>
-</div>
-</div>
-<div class="col-md-8">
-    <div class="md-form">
-        <input type="text" placeholder="Enter Customer Name" class="form-control">
-        <label class="active">Customer Name</label>
+
+            <div class="form-header green  ">
+                <h4>Create New Customer</h4>
+            </div>
+
+            <div class="row" style="padding-bottom: 1rem">
+                <div class="col-md-4">
+                    <div class="md-form">
+                        <md-datepicker ng-model="customer.joinDate" name="joinDate" md-placeholder="Join Date" required></md-datepicker>
+                        <label class="active" style="padding-left:4rem">Join Date</label>
+                        <div ng-messages="CustomerForm.joinDate.$error" ng-messages-multiple>
+                            <div style="font-size: 75%;color:red;font-style: italic" ng-message="required">*This field is required.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="md-form">
+                        <input style="margin-bottom:0.5rem" name="cname" ng-model="customer.name" required="true" type="text" placeholder="Enter Customer Name" class="form-control">
+                        <label class="active">Customer Name</label>
+                        <div ng-messages="CustomerForm.cname.$error" ng-messages-multiple>
+                            <div style="font-size: 75%;color:red;font-style: italic" ng-message="required">*This field is required.</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" style="padding-bottom: 1rem">
+                <div class="col-md-4">
+
+                    <div class="md-form form-group">
+                        <input style="margin-bottom:0.5rem" type="text" name="nic" ng-model="customer.nic" required placeholder="Enter NIC Number" class="form-control">
+                        <label class="active">Customer NIC</label>
+                        <div ng-messages="CustomerForm.nic.$error" ng-messages-multiple>
+                            <div style="font-size: 75%;color:red;font-style: italic" ng-message="required">*This field is required.</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+                    <div class="md-form form-group">
+                        <input style="margin-bottom:0.5rem" type="text" name="cmobile" ng-pattern="'^[0-9]{10}$'" ng-model="customer.mobile" required placeholder="Enter Mobile Number" class="form-control">
+                        <label class="active">Customer Mobile</label>
+                        <div ng-messages="CustomerForm.cmobile.$error" ng-messages-multiple>
+                            <div style="font-size: 75%;color:red;font-style: italic" ng-message="required">*This field is required.</div>
+                            <div style="font-size: 75%;color:red;font-style: italic" ng-message="pattern">Mobile must be numeric and 10 digits long</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="md-form">
+                        <input ng-pattern="'^[0-9]{10}$'" name="land" type="text" style="margin-bottom:0.5rem" ng-model="customer.land" placeholder="Enter Land Number" class="form-control">
+                        <label class="active">Customer Land</label>
+                        <div ng-messages="CustomerForm.land.$error" ng-messages-multiple>
+                            <div style="font-size: 75%;color:red;font-style: italic" ng-message="pattern">Land must be numeric and 10 digits long</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding-bottom: 1rem">
+                <div class="col-md-6">
+                    <div class="md-form">
+
+                        <textarea rows="3" ng-model="customer.address" type="text" placeholder="Enter Customer Address" class="md-textarea"></textarea>
+                        <label class="active">Customer Address</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="md-form">
+
+                        <textarea rows="3" ng-model="customer.remarks" type="text" placeholder="Enter   Additional Details" class="md-textarea"></textarea>
+                        <label class="active">Customer Remarks</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="md-form">
+
+                        <input style="margin-bottom:0.5rem" required type="number" ng-pattern="'[0-9]+(\\.[0-9][0-9]?)?'" name="fees" ng-model="customer.fees" placeholder="Enter Total Fees" class="form-control">
+                        <label class="active">Customer Total Fees</label>
+                        <div ng-messages="CustomerForm.fees.$error" ng-messages-multiple>
+                            <div style="font-size: 75%;color:red;font-style: italic" ng-message="required">*This field is required.</div>
+                            <div style="font-size: 75%;color:red;font-style: italic" ng-message="pattern">Price must be a valid price.</div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4"></div>
+                <div class="col-md-2" style="padding-top:1rem;">
+                    <button type="submit" class="btn btn-primary btn-block">Save</button>
+                </div>
+            </div>
+
+        </form>
+
     </div>
-</div>
-
-</div>
-<div class="row" style="padding-bottom: 1rem">
-<div class="col-md-4">
-
-    <div class="md-form">
-        <input type="text" placeholder="Enter NIC Number" class="form-control">
-        <label class="active">Customer NIC</label>
-    </div>
-
-</div>
-<div class="col-md-4">
-    <div class="md-form">
-        <input type="text" placeholder="Enter Mobile Number" class="form-control">
-        <label class="active">Customer Mobile</label>
-
-    </div>
-</div>
-<div class="col-md-4">
-    <div class="md-form">
-        <input type="text" placeholder="Enter Land Number" class="form-control">
-        <label class="active">Customer Land</label>
-
-    </div>
-</div>
-</div>
-
-<div class="row" style="padding-bottom: 1rem">
-<div class="col-md-6">
-    <div class="md-form">
-
-        <textarea rows="3" type="text" placeholder="Enter Customer Address" class="md-textarea"></textarea>
-        <label class="active">Customer Address</label>
-    </div>
-</div>
-<div class="col-md-6">
-    <div class="md-form">
-
-        <textarea rows="3" type="text" placeholder="Enter   Additional Details" class="md-textarea"></textarea>
-        <label class="active">Customer Remarks</label>
-    </div>
-</div>
-</div>
-
-
-<div class="row">
-
-    <div class="col-md-6">
-        <div class="md-form">
-
-            <input type="text" placeholder="Enter Total Fees" class="form-control">
-            <label class="active">Customer Total Fees</label>
-        </div>
-    </div>
-
-</div>
-
-
-
-</div>
 
 </div>

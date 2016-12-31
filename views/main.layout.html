@@ -3,19 +3,28 @@
 
 
 
-    <div class="container">
+    <div class="container" ng-controller="mainController as vm">
 
         <!--Collapse content-->
         <div class="   ">
             <!--Navbar Brand-->
-            <a class="navbar-brand">Driving School Application</a>
+            <!--<a class="navbar-brand">
+
+            </a>-->
+            <ul class="nav   navbar-nav  pull-left" style="width:50%;margin-right:0cm">
+                <div>
+                    <ol class="breadcrumb">
+                        <li ng-repeat=" x in $breadcrumbs" class="breadcrumb-item" ng-class="{'active':x.active}"><a href="" ng-click="vm.navigate(x.sref)">{{x.name}}</a></li>
+                    </ol>
+                </div>
+            </ul>
 
             <!--Links-->
             <ul class="nav   navbar-nav  nav-right-flex">
-                <li class="nav-item" ui-sref-active="active">
+                <li class="nav-item">
                     <a class="nav-link" href=""> Dashboard</a>
                 </li>
-                <li class="nav-item btn-group active">
+                <li class="nav-item btn-group {{ ($navigation == 'Customer')?'active':''}}">
                     <a class="nav-link dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Customers</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <a ui-sref="customer-list" class="dropdown-item">Search</a>
@@ -23,7 +32,7 @@
                     </div>
                 </li>
 
-                <li class="nav-item btn-group  ">
+                <li class="nav-item btn-group  {{ ($navigation == 'Payment')?'active':''}}">
                     <a class="nav-link dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Payments</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <a ui-sref="payment-list" class="dropdown-item">Search</a>
@@ -34,8 +43,8 @@
                 <!--<li class="nav-item" ui-sref-active="active">
                     <a class="nav-link" href=""> Settings</a>
                 </li>-->
-                <li class="nav-item" ui-sref-active="active">
-                    <a class="nav-link" href="" ui-sref="login"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="" ng-click="vm.logout()"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a>
                 </li>
 
             </ul>
@@ -47,14 +56,11 @@
 
 </nav>
 
-<div class="container">
+<div class="container" style="padding-top:7rem">
 
-    <ol class="breadcrumb" style="padding-top:5rem">
-<li class="breadcrumb-item"><a href="#">Home</a></li>
-<li class="breadcrumb-item"><a href="#">Library</a></li>
-<li class="breadcrumb-item active">Data</li>
-</ol>
-<div ui-view=""></div>
+
+
+    <div ui-view=""></div>
 </div>
 
 </div>
