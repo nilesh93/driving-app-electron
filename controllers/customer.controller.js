@@ -12,7 +12,8 @@ function CustomerService($http, $config) {
         viewCustomer: viewCustomer,
         saveExam: saveExam,
         updateCustomer: updateCustomer,
-        deleteExam: deleteExam
+        deleteExam: deleteExam,
+        updateExam: updateExam
     };
 
     function getCustomers(type) {
@@ -37,6 +38,10 @@ function CustomerService($http, $config) {
 
     function deleteExam(id) {
         return $http.delete($config.host + "exams/" + id);
+    }
+
+    function updateExam(id, param) {
+        return $http.put($config.host + "exams/" + id, param);
     }
 }
 
@@ -96,6 +101,7 @@ function CustomerNewCtrl(CustomerService, $rootScope, ngToast, $scope) {
             dismissOnTimeout: false,
             content: "Saving..."
         });
+        $scope.customer.fees = Number($scope.customer.fees.replace(/[^0-9\.]+/g, ""));
         $scope.customer.joinDateString = moment($scope.customer.joinDate).format("YYYY-MM-DD");
         CustomerService.saveCustomer($scope.customer).then((data) => {
             ngToast.dismiss();
@@ -118,13 +124,14 @@ function CustomerViewCtrl($state, $mdDialog, ngToast, $mdToast, $scope, $rootSco
     $scope.customer = {};
 
     vm.exam = {};
-    vm.exam.cid = vm.customerID;
+
 
     vm.exams = [];
     vm.payments = [];
 
     vm.totalPaid = 0;
     vm.due = 0;
+    vm.selectedExam = {};
 
     $rootScope.$breadcrumbs = [{
             name: 'Customers',
@@ -145,7 +152,7 @@ function CustomerViewCtrl($state, $mdDialog, ngToast, $mdToast, $scope, $rootSco
 
     function construct() {
         CustomerService.viewCustomer(vm.customerID).then((data) => {
-            console.log(data);
+
             vm.customer = data.data.customer;
             vm.exams = data.data.exams;
             vm.payments = data.data.payments;
@@ -181,7 +188,7 @@ function CustomerViewCtrl($state, $mdDialog, ngToast, $mdToast, $scope, $rootSco
         $scope.customer.remarks = vm.customer.remarks;
         $scope.customer.mobile = vm.customer.phone1;
         $scope.customer.land = vm.customer.phone2;
-        $scope.customer.fees = vm.customer.total_price;
+        $scope.customer.fees = vm.customer.total_price.toFixed(2);
         $scope.customer.nic = vm.customer.nic;
         $scope.customer.status = vm.customer.status;
     }
@@ -193,6 +200,7 @@ function CustomerViewCtrl($state, $mdDialog, ngToast, $mdToast, $scope, $rootSco
             dismissOnTimeout: false,
             content: "Saving..."
         });
+        vm.exam.cid = vm.customerID;
         CustomerService.saveExam(vm.exam).then((data) => {
             vm.exam = {};
             vm.exam.type = "Practical";
@@ -242,6 +250,11 @@ function CustomerViewCtrl($state, $mdDialog, ngToast, $mdToast, $scope, $rootSco
             content: "Updating..."
         });
         $scope.customer.joinDateString = moment($scope.customer.joinDate).format("YYYY-MM-DD");
+        if ($scope.customer.fees) {
+            $scope.customer.fees = $scope.customer.fees + "";
+            $scope.customer.newFees = Number($scope.customer.fees.replace(/[^0-9\.]+/g, ""));
+            delete $scope.customer.fees;
+        }
         CustomerService.updateCustomer(vm.customerID, $scope.customer).then((data) => {
             ngToast.dismiss();
 
@@ -253,7 +266,42 @@ function CustomerViewCtrl($state, $mdDialog, ngToast, $mdToast, $scope, $rootSco
         });
     }
 
+    vm.editExam = function(ev, exam) {
 
+        vm.selectedExam = exam;
+        vm.selectedExam.examDate = new Date(moment(exam.date).valueOf());
+        vm.dialog = $mdDialog.show({
+            scope: $scope,
+            templateUrl: './views/customers/exam.edit.html',
+            clickOutsideToClose: true,
+            preserveScope: true,
+            parent: angular.element(document.body)
+        });
+    };
 
     construct();
+
+    vm.hide = function() {
+        $mdDialog.hide();
+    }
+
+    vm.updateExam = function() {
+        ngToast.info({
+            dismissOnTimeout: false,
+            content: "Updating..."
+        });
+
+        vm.selectedExam.date = moment(vm.selectedExam.examDate).format("YYYY-MM-DD");
+
+        CustomerService.updateExam(vm.selectedExam.id, vm.selectedExam).then((data) => {
+            ngToast.dismiss();
+
+            ngToast.success('Exam Updated Successfully!');
+            vm.hide();
+            construct();
+        }, () => {
+            ngToast.dismiss();
+            ngToast.danger('Failed! Something Went Wrong');
+        });
+    }
 }

@@ -56,3 +56,12 @@ md-autocomplete {
     background-color: green;
     z-index: 2000;
 }
+
+.md-select-value>span:not(.md-select-icon) {
+    line-height: 3;
+}
+
+.md-title {
+    line-height: 3rem;
+    border-bottom: 1px solid #BDBDBD;
+}

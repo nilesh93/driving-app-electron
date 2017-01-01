@@ -21,8 +21,8 @@
 
             <!--Links-->
             <ul class="nav   navbar-nav  nav-right-flex">
-                <li class="nav-item">
-                    <a class="nav-link" href=""> Dashboard</a>
+                <li class="nav-item {{ ($navigation == 'Dashboard')?'active':''}}">
+                    <a class="nav-link" href="" ui-sref="dashboard"> Dashboard</a>
                 </li>
                 <li class="nav-item btn-group {{ ($navigation == 'Customer')?'active':''}}">
                     <a class="nav-link dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Customers</a>
@@ -43,11 +43,29 @@
                 <!--<li class="nav-item" ui-sref-active="active">
                     <a class="nav-link" href=""> Settings</a>
                 </li>-->
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a class="nav-link" href="" ng-click="vm.logout()"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a>
-                </li>
+                </li>-->
+                <!--<li class="nav-item avatar active dropdown">
+                    <a class="nav-link dropdown-toggle waves-effect waves-light" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <img src="./images/user.png" class="img-fluid rounded-circle">
+                    </a>
+                    <div class="dropdown-menu dropdown-warning" aria-labelledby="dropdownMenu1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
 
+                        <a class="nav-link" href="" ng-click="vm.logout()"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a>
+
+                    </div>
+                </li>-->
+                <li class="nav-item   avatar dropdown" style="padding-left:1rem;">
+                    <a class="nav-link dropdown-toggle  " id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="./images/user.png" class="img-fluid rounded-circle"></a>
+                    <div class="dropdown-menu dropdown-warning" aria-labelledby="dropdownMenu3" style="margin-right: 3rem;">
+                        <a class="dropdown-item" href="" ng-click="vm.logout()"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a>
+
+                    </div>
+                </li>
             </ul>
+
 
         </div>
         <!--/.Collapse content-->

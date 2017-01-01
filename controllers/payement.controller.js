@@ -92,7 +92,7 @@ function PaymentListCtrl(PaymentService, $rootScope, $mdDialog, ngToast) {
 
                 }
             })
-            .title('Delete?')
+            .title('Delete Payment?')
             .textContent('This cannot be undone.')
             .ariaLabel('')
             .ok('Delete')
@@ -161,9 +161,18 @@ function PaymentAddCtrl($scope, ngToast, $rootScope, CustomerService, PaymentSer
                     pay.remarkSave += " - " + temp.fullname;
                     pSave(pay);
                 } else {
-                    var confirm = $mdDialog.confirm()
-                        .title('Sorry Customer ID ' + pay.cid + " does not exist!")
-                        .textContent('Do you want to send the customer ID as null and continue?  Press No to cancel')
+                    var confirm = $mdDialog.confirm({
+                            onComplete: function afterShowAnimation() {
+                                var $dialog = angular.element(document.querySelector('md-dialog'));
+                                var $actionsSection = $dialog.find('md-dialog-actions');
+                                var $cancelButton = $actionsSection.children()[0];
+                                var $confirmButton = $actionsSection.children()[1];
+                                angular.element($confirmButton).addClass('md-raised md-success');
+
+                            }
+                        })
+                        .title('Sorry! Customer ID ' + pay.cid + " Does not Exist.")
+                        .textContent('Do you want to   continue & save anyway?')
                         .ariaLabel('')
                         .ok('Continue')
                         .cancel('No');
@@ -177,6 +186,7 @@ function PaymentAddCtrl($scope, ngToast, $rootScope, CustomerService, PaymentSer
             }
         } else {
             pay.remarkSave = pay.remark;
+            pay.cid = null;
             pSave(pay);
         }
 
@@ -189,6 +199,9 @@ function PaymentAddCtrl($scope, ngToast, $rootScope, CustomerService, PaymentSer
             content: "Saving..."
         });
         pay.paymentDateSave = moment(pay.paymentDate).format("YYYY-MM-DD");
+
+        pay.amount = Number(pay.amount.replace(/[^0-9\.]+/g, ""));
+
         PaymentService.savePayment(pay).then((data) => {
             ngToast.dismiss();
             ngToast.success('Saved Successfully!');

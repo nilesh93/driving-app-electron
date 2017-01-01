@@ -1,27 +1,56 @@
 <div class="row" style="padding-bottom: 1rem">
     <div class="col-md-3">
-        <div class="card testimonial-card">
-
-            <!--Bacground color-->
-            <div class="card-up default-color-dark">
-            </div>
-
-            <!--Avatar-->
-            <div class="avatar"><img src="images/user.png" class="rounded-circle img-responsive">
-            </div>
-
+        <br>
+        <div class="card">
             <div class="card-block">
-                <h5 class="card-title" style="text-transform:capitalize ">{{vm.customer.fullname}}</h5>
-                <h5>{{vm.customer.id | numberFixedLen:4}}</h5>
+
+                <div class="form-header {{(vm.customer.status =='active')?'green':'danger'}}  " style="width:4rem;margin-bottom:0cm">
+                    <h4><i class=" fa fa-user  "></i></h4>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="pull-right"> {{(vm.customer.status =='active')?'ACTIVE':'IN-ACTIVE'}} - {{vm.customer.id | numberFixedLen:4}}</h5>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6 class="pull-right" style="text-align: right"> {{vm.customer.fullname}} </h6>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6 class="pull-left"> PAID </h6>
+                    </div>
+                </div>
+                <progress class="progress progress-info" value="{{(vm.totalPaid /vm.customer.total_price) * 100}}" max="100">50%</progress>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6 class="pull-right"> <small>{{vm.totalPaid | currency:"Rs. "}} / {{vm.customer.total_price | currency:"Rs. " }}</small></h6>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:0.5rem;">
+                    <div class="col-md-12">
+                        <h6 class="pull-right" style="text-align: right;font-size:90%"> Joined On {{vm.customer.date_of_admission}} </h6>
+                    </div>
+                </div>
                 <hr>
-                <p style="font-size: 75%">{{vm.customer.address || 'Address Not Available'}}</p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p style="font-size: 85%" style="text-align: center">{{vm.customer.address || 'Address Not Available'}}</p>
+                    </div>
+                </div>
             </div>
-
-
         </div>
 
+
         <ul class="list-group">
-            <li class="list-group-item"><span class="fa fa-user"></span> &nbsp;&nbsp;&nbsp;{{vm.customer.nic}}</li>
+            <li class="list-group-item">
+                <span class="fa fa-user"></span> &nbsp;&nbsp;&nbsp;{{vm.customer.nic}}
+            </li>
             <li class="list-group-item"> <span class="fa fa-phone"></span> &nbsp;&nbsp;&nbsp;{{vm.customer.phone1}}</li>
             <li class="list-group-item"><span class="fa fa-home"></span> &nbsp;&nbsp;&nbsp;{{vm.customer.phone2 || 'Unavailable'}}</li>
 
@@ -29,7 +58,13 @@
 
         <div class="card" style="margin-top:1rem">
             <div class="card-block">
-                <h5>Remarks</h5>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 style="text-align: left">REMARKS</h5>
+                    </div>
+                </div>
+
+                <hr style="margin-top:0cm">
                 <p style="color: gray">{{vm.customer.remarks || 'Unavailable'}}</p>
             </div>
         </div>
@@ -39,7 +74,7 @@
 
 
         <div class="row">
-            <ul class="nav nav-tabs tabs-3 green" role="tablist">
+            <ul class="nav nav-tabs tabs-3 unique-color" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab">Payments</a>
                 </li>
@@ -84,15 +119,15 @@
 
                         </tbody>
                         <tfoot>
-                            <tr>
+                            <tr style="border-top:3px solid #E0E0E0">
                                 <td colspan="3"> Total Paid</td>
 
 
                                 <td colspan="2" style="text-align: right">{{vm.totalPaid | currency:"Rs. "}} / {{vm.customer.total_price | currency:"Rs. " }}</td>
                             </tr>
-                            <tr>
+                            <tr style="border-top:3px solid #E0E0E0">
                                 <td colspan="4"> Total Due</td>
-                                <td class="success" style="text-align: right"> {{vm.due | currency:"Rs. " }}</td>
+                                <td class="success" style="text-align: right;border-bottom:4px solid #BDBDBD; border-bottom-style: double"> {{vm.due | currency:"Rs. " }}</td>
 
                             </tr>
                         </tfoot>
@@ -115,7 +150,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <md-select name="type" required style="margin-bottom:0cm;margin-top:0.2rem" ng-model="vm.exam.type" placeholder="Exam Type">
+                                <md-select name="type" required style="margin-bottom:0cm; margin-top:0cm" ng-model="vm.exam.type" placeholder="Exam Type">
                                     <md-option value="Practical" selected>Practical</md-option>
                                     <md-option value="Written">Written</md-option>
 
@@ -174,12 +209,15 @@
                                 <td>{{x.code}}</td>
                                 <td>{{x.date}}</td>
                                 <td>{{x.time}}</td>
-                                <td style="text-transform: capitalize">{{x.status}}</td>
+                                <td>
+
+                                    <span style="text-transform: capitalize" class="tag tag-{{(x.status =='Completed')?'success':'default'}}">{{x.status}}</span>
+                                </td>
 
                                 <td style="padding: 0cm">
 
                                     <button type="button" class="btn btn-info btn-sm" style="padding: 8px;margin-right:0cm"> 
-   <i class="fa fa-pencil" aria-hidden="true"></i>
+   <i class="fa fa-pencil" ng-click="vm.editExam($event,x)" aria-hidden="true"></i>
 </button>
                                     <button ng-click="vm.deleteExam($event,x.id)" type="button" class="btn btn-danger btn-sm" style="padding: 8px;"> 
     <i class="fa fa-trash" aria-hidden="true"></i>
@@ -284,7 +322,7 @@
                             <div class="col-md-6">
                                 <div class="md-form">
 
-                                    <input style="margin-bottom:0.5rem" required type="number" ng-pattern="'[0-9]+(\\.[0-9][0-9]?)?'" name="fees" ng-model="customer.fees" placeholder="Enter Total Fees" class="form-control">
+                                    <input style="margin-bottom:0.5rem" required type="text" format="number" name="fees" ng-model="customer.fees" placeholder="Enter Total Fees" class="form-control">
                                     <label class="active">Customer Total Fees</label>
                                     <div ng-messages="CustomerForm.fees.$error" ng-messages-multiple>
                                         <div style="font-size: 75%;color:red;font-style: italic" ng-message="required">*This field is required.</div>
@@ -293,25 +331,26 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3" style="padding-top:1.4rem">
+                            <div class="col-md-3" style="padding-top:0.3rem">
+                                <div class="md-form">
+                                    <label class="active">Status</label>
+                                    <md-select name="cstatus" required style="margin-top:0cm" ng-model="customer.status" placeholder="Exam Type">
+                                        <md-option value="active">Active</md-option>
+                                        <md-option value="inactive">In-Active</md-option>
 
-                                <md-select name="cstatus" required style="margin-top:0.2rem" ng-model="customer.status" placeholder="Exam Type">
-                                    <md-option value="active">Active</md-option>
-                                    <md-option value="inactive">In-Active</md-option>
-
-                                </md-select>
-                                <div ng-messages="CustomerForm.cstatus.$error" ng-messages-multiple>
-                                    <div style="font-size: 75%;color:red;font-style: italic" ng-message="required">*This field is required.</div>
+                                    </md-select>
+                                    <div ng-messages="CustomerForm.cstatus.$error" ng-messages-multiple>
+                                        <div style="font-size: 75%;color:red;font-style: italic" ng-message="required">*This field is required.</div>
+                                    </div>
                                 </div>
-
                             </div>
 
 
                         </div>
                         <div class="row">
-                            <div class="col-md-9"></div>
-                            <div class="col-md-2" style="padding-top:1rem;">
-                                <button type="submit" class="btn btn-primary btn-block">Save</button>
+                            <div class="col-md-8"></div>
+                            <div class="col-md-3" style="padding-top:1rem;">
+                                <button type="submit" class="btn btn-primary btn-block">Update</button>
                             </div>
                         </div>
                     </form>

@@ -4,7 +4,7 @@
 
 
 
-        <div class="form-header orange  ">
+        <div class="form-header   cyan accent-4  ">
             <h4>Payments</h4>
         </div>
 
@@ -42,7 +42,7 @@
 <div class="card">
     <div class="card-block">
         <div class="md-form">
-            <input placeholder="Filter Results" type="text" id="form5" class="form-control">
+            <input placeholder="Filter Results" ng-model="filterPay" type="text" id="form5" class="form-control">
         </div>
 
 
@@ -54,13 +54,13 @@
                     <td>Date</td>
                     <td>Description</td>
 
-                    <td>Debit</td>
-                    <td>Credit</td>
+                    <td>Income</td>
+                    <td>Expenditure</td>
                     <td></td>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="x in vm.payments">
+                <tr ng-repeat="x in vm.payments | filter:filterPay">
                     <td>
                         <i ng-if="x.type == 'Expenditure'" class="fa fa-minus-circle red-text" aria-hidden="true"></i>
 
@@ -80,16 +80,18 @@
 
 
             </tbody>
-            <tfoot>
-                <tr>
+            <tfoot ng-if="filterPay ===''||filterPay===undefined||filterPay==null">
+                <tr style="border-top:3px solid #E0E0E0">
                     <td colspan="4"> Total</td>
 
                     <td>{{vm.debit | currency:"Rs. "}}</td>
                     <td>{{vm.credit | currency:"Rs. "}}</td>
+                    <td></td>
                 </tr>
-                <tr>
+                <tr style="border-top:3px solid #E0E0E0">
                     <td colspan="5"> Gross Profit</td>
-                    <td class="success"> {{(vm.debit - vm.credit) | currency:"Rs. "}}</td>
+                    <td class="success" style="border-bottom:4px solid #BDBDBD; border-bottom-style: double"> {{(vm.debit - vm.credit) | currency:"Rs. "}}</td>
+                    <td></td>
 
                 </tr>
             </tfoot>

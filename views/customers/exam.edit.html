@@ -1,0 +1,85 @@
+<div class="container-fluid">
+    <br>
+    <h5>Update Exam</h5>
+    <hr>
+    <br>
+    <form name="examFormUpdate" ng-submit="vm.updateExam()">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="md-form">
+                    <label class="active" style="padding-left:4rem">Exam Date</label>
+                    <md-datepicker required ng-model="vm.selectedExam.examDate" name="examDate" md-placeholder="Exam Date"></md-datepicker>
+                    <div ng-messages="examFormUpdate.examDate.$error" ng-messages-multiple>
+                        <div style="font-size: 75%;color:red;font-style: italic;padding-left:3rem" ng-message="required">*This field is required.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="md-form">
+                    <label class="active">Exam Type</label>
+
+                    <md-select name="type" required style="margin-bottom:0cm; margin-top:0cm" ng-model="vm.selectedExam.type" placeholder="Exam Type">
+                        <md-option value="Practical" selected>Practical</md-option>
+                        <md-option value="Written">Written</md-option>
+
+                    </md-select>
+                    <div ng-messages="examFormUpdate.type.$error" ng-messages-multiple>
+                        <div style="font-size: 75%;color:red;font-style: italic" ng-message="required">*This field is required.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-6" style="padding-left:4rem">
+                <div class="md-form">
+                    <label class="active">Exam Time</label>
+                    <input placeholder="Time" required ng-model="vm.selectedExam.time" name="time" type="text" class="form-control">
+                    <div ng-messages="examFormUpdate.time.$error" ng-messages-multiple>
+                        <div style="font-size: 75%;color:red;font-style: italic" ng-message="required">*This field is required.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="md-form">
+                    <label class="active">Exam Code</label>
+                    <input placeholder="Exam Code" required name="code" ng-model="vm.selectedExam.code" type="text" class="form-control">
+                    <div ng-messages="examFormUpdate.code.$error" ng-messages-multiple>
+                        <div style="font-size: 75%;color:red;font-style: italic" ng-message="required">*This field is required.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="row">
+            <div class="col-md-6" style="padding-left:4rem">
+                <div class="md-form">
+                    <label class="active">Exam Status</label>
+                    <md-select name="type" required style="margin-bottom:0cm; margin-top:0cm" ng-model="vm.selectedExam.status" placeholder="Exam Status">
+                        <md-option value="Pending" selected>Pending</md-option>
+                        <md-option value="Completed">Completed</md-option>
+
+                    </md-select>
+                    <div ng-messages="examFormUpdate.type.$error" ng-messages-multiple>
+                        <div style="font-size: 75%;color:red;font-style: italic" ng-message="required">*This field is required.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-3">
+                <!--<md-button md-no-ink ng-click="vm.hide()" class="md-primary">Cancel</md-button>-->
+
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-block btn-info ">Update</button>
+            </div>
+
+        </div>
+    </form>
+</div>

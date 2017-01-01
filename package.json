@@ -1,55 +1,57 @@
 {
-    "name": "Driving",
-    "version": "0.0.1",
-    "main": "main.js",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/ClubeDosGeeksCoding/basel-app.git"
-    },
-    "author": "Jayr Alencar <jayralencarpereira@gmail.com>",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/ClubeDosGeeksCoding/basel-app/issues"
-    },
-    "homepage": "https://github.com/ClubeDosGeeksCoding/basel-app#readme",
-    "scripts": {
-        "start": "electron main.js",
-        "win32": "electron-packager . myApp --platform=win32 --arch=ia32",
-        "win64": "electron-packager . myApp --platform=win32 --arch=x64",
-        "linux32": "electron-packager . myApp --platform=linux --arch=ia32",
-        "linux64": "electron-packager . myApp --platform=linux --arch=x64",
-        "osx": "electron-packager . myApp --platform=darwin --arch=x64",
-        "build": "electron-packager . --all"
-    },
-    "devDependencies": {
-        "angular": "<1.6.0",
-        "angular-route": "^1.5.1",
-        "basel-cli": "*",
-        "electron-packager": "^6.0.0",
-        "electron-prebuilt": "latest",
-        "electron-reload": "^1.1.0"
-    },
-    "titel": "Driving School Admin",
-    "database": "dbName",
-    "title": "Driving School Admin",
-    "type": "simple",
-    "dependencies": {
-        "angular-animate": "1.5.10",
-        "angular-aria": "1.5.10",
-        "angular-material": "^1.1.1",
-        "angular-material-datetimepicker": "^1.4.0",
-        "angular-messages": "<1.6.0",
-        "angular-sanitize": "<1.6.0",
-        "angular-ui-router": "^0.3.2",
-        "angular-utils-pagination": "^0.11.0",
-        "install": "^0.8.4",
-        "jquery": "^2.2.2",
-        "lodash": "^4.17.3",
-        "material-steppers": "^1.0.3",
-        "mdPickers": "^0.7.5",
-        "mdbootstrap": "^4.2.0",
-        "moment": "^2.17.1",
-        "ng-toast": "^2.0.0",
-        "tether": "^1.4.0"
-    }
+  "name": "Driving",
+  "version": "0.0.1",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ClubeDosGeeksCoding/basel-app.git"
+  },
+  "author": "Jayr Alencar <jayralencarpereira@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ClubeDosGeeksCoding/basel-app/issues"
+  },
+  "homepage": "https://github.com/ClubeDosGeeksCoding/basel-app#readme",
+  "scripts": {
+    "start": "electron main.js",
+    "win32": "electron-packager . myApp --platform=win32 --arch=ia32",
+    "win64": "electron-packager . myApp --platform=win32 --arch=x64",
+    "linux32": "electron-packager . myApp --platform=linux --arch=ia32",
+    "linux64": "electron-packager . myApp --platform=linux --arch=x64",
+    "osx": "electron-packager . myApp --platform=darwin --arch=x64",
+    "build": "electron-packager . --all"
+  },
+  "devDependencies": {
+    "angular": "<1.6.0",
+    "angular-route": "^1.5.1",
+    "basel-cli": "*",
+    "electron-packager": "^6.0.0",
+    "electron-prebuilt": "latest",
+    "electron-reload": "^1.1.0"
+  },
+  "titel": "Driving School Admin",
+  "database": "dbName",
+  "title": "Driving School Admin",
+  "type": "simple",
+  "dependencies": {
+    "angular-animate": "1.5.10",
+    "angular-aria": "1.5.10",
+    "angular-chart.js": "^1.1.1",
+    "angular-material": "^1.1.1",
+    "angular-material-datetimepicker": "^1.4.0",
+    "angular-messages": "<1.6.0",
+    "angular-sanitize": "<1.6.0",
+    "angular-ui-router": "^0.3.2",
+    "angular-utils-pagination": "^0.11.0",
+    "chart.js": "^2.4.0",
+    "install": "^0.8.4",
+    "jquery": "^2.2.2",
+    "lodash": "^4.17.3",
+    "material-steppers": "^1.0.3",
+    "mdPickers": "^0.7.5",
+    "mdbootstrap": "^4.2.0",
+    "moment": "^2.17.1",
+    "ng-toast": "^2.0.0",
+    "tether": "^1.4.0"
+  }
 }

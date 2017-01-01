@@ -1,0 +1,82 @@
+<br>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-block">
+
+                <div class="form-header green  " style="width:4rem;margin-bottom:0cm">
+                    <h4><i class=" fa fa-user  "></i></h4>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="pull-right">ACTIVE CUSTOMERS</h5>
+                        <progress class="progress progress-info" value="50" max="100">50%</progress>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="pull-right"> {{vm.dashboardData.active | numberFixedLen:2}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="card">
+            <div class="card-block">
+
+                <div class="form-header red  " style="width:4rem;margin-bottom:0cm">
+                    <h4><i class=" fa fa-dollar  "></i></h4>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="pull-right">MONEY DUE</h5>
+                        <progress class="progress progress-warning" value="70" max="100">50%</progress>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="pull-right"><small>RS.</small> {{vm.dashboardData.due[0].due | currency:""}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+        <div class="card">
+            <div class="card-block">
+
+                <div class="form-header blue  " style="width:4rem;margin-bottom:0cm">
+                    <h4><i class=" fa fa-line-chart  "></i></h4>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="pull-right">TOTAL PROFIT <small>PAST 6 MONTHS </small></h5>
+                        <progress class="progress progress-warning" value="70" max="100">50%</progress>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="pull-right"><small>RS.</small> {{ vm.totalProfit | currency:""}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <br><br>
+        <div class="card">
+            <div class="card-block">
+
+                <div class="form-header purple  ">
+                    <h4>Payment Statistics</h4>
+                </div>
+                <br>
+                <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick">
+</canvas>
+            </div>
+        </div>
+    </div>
+</div>
