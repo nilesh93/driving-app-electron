@@ -61,7 +61,7 @@ angular.module('driving-school.main', [])
                 } else {
                     vm.error = true;
 
-                    ngToast.error({
+                    ngToast.danger({
                         dismissButton: true,
                         content: 'Invalid Login!',
                         timeout: 7000,
