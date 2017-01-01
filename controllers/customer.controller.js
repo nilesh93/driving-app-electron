@@ -139,6 +139,7 @@ function CustomerViewCtrl($state, $mdDialog, ngToast, $mdToast, $scope, $rootSco
     vm.totalPaid = 0;
     vm.due = 0;
     vm.selectedExam = {};
+    vm.buildCustomer = buildCustomer;
 
     $rootScope.$breadcrumbs = [{
             name: 'Customers',
