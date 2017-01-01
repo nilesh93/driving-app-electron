@@ -1,0 +1,87 @@
+<br>
+<div class="card">
+    <form ng-submit="vm.savePayment()" name="paymentForm">
+        <div class="card-block">
+
+
+
+            <div class="form-header red  ">
+                <h4>Create New Payment</h4>
+            </div>
+
+            <div class="row" style="padding-bottom: 1rem">
+                <div class="col-md-4">
+                    <div class="md-form">
+                        <md-datepicker ng-model="vm.payment.paymentDate" name="payDate" md-placeholder="Payment Date" required></md-datepicker>
+                        <label class="active" style="padding-left:4rem">Payment Date</label>
+                        <div ng-messages="paymentForm.payDate.$error" ng-messages-multiple>
+                            <div style="font-size: 75%;color:red;font-style: italic;padding-left:3.5rem" ng-message="required">*This field is required.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="md-form">
+                        <label class="active">Payment Type</label>
+                        <md-select style="margin-top: 3px" aria-label="" ng-model="vm.payment.type">
+                            <md-option ng-selected="true" ng-value="'Income'">
+                                Income
+                            </md-option>
+                            <md-option ng-value="'Expenditure'">
+                                Expenditure
+                            </md-option>
+                        </md-select>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row" style="padding : 1rem;padding-left:3rem;">
+                <div class="col-md-6" ng-if="vm.payment.type == 'Income'">
+                    <div class="md-form">
+                        <label class="active">Enter Customer ID</label>
+
+
+                        <input style="margin-bottom:0.5rem" required type="number" ng-pattern="'[0-9]+(\\.[0-9][0-9]?)?'" name="cid" ng-model="vm.payment.cid" placeholder="Enter Total Amount" class="form-control">
+
+                        <div ng-messages="paymentForm.cid.$error" ng-messages-multiple>
+                            <div style="font-size: 75%;color:red;font-style: italic" ng-message="required">*This field is required.</div>
+                            <div style="font-size: 75%;color:red;font-style: italic" ng-message="pattern">ID must be a valid ID.</div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row" style="padding : 1rem;padding-left:3rem;">
+                <div class="col-md-6 ">
+                    <div class="md-form ">
+
+                        <textarea rows="3 " type="text " ng-model="vm.payment.remark" placeholder="Enter Additional Details " class="md-textarea "></textarea>
+                        <label class="active ">Payment Remarks</label>
+                    </div>
+                </div>
+                <div class="col-md-4" style="padding-top:2.8rem">
+                    <div class="md-form">
+
+                        <input style="margin-bottom:0.5rem" required type="text" format="number" name="fees" ng-model="vm.payment.amount" placeholder="Enter Total Amount" class="form-control">
+                        <label class="active">Amount</label>
+                        <div ng-messages="paymentForm.fees.$error" ng-messages-multiple>
+                            <div style="font-size: 75%;color:red;font-style: italic" ng-message="required">*This field is required.</div>
+                            <div style="font-size: 75%;color:red;font-style: italic" ng-message="pattern">Price must be a valid price.</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-md-9 "></div>
+                <div class="col-md-2 ">
+                    <button type="submit" class="btn btn-info btn-block "> Save</button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>

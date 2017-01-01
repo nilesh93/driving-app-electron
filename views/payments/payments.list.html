@@ -1,0 +1,122 @@
+<br>
+<div class="card">
+    <div class="card-block">
+
+
+
+        <div class="form-header   cyan accent-4  ">
+            <h4>Payments</h4>
+        </div>
+
+        <form ng-submit="vm.searchPayment()">
+            <div class="row">
+                <div class="col-md-4">
+
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <label class="active" style="padding-left:4rem">Start Date</label>
+                    <md-datepicker ng-model="vm.search.startDate" md-placeholder="Join Date"></md-datepicker>
+
+
+                </div>
+                <div class="col-md-3">
+                    <label class="active" style="padding-left:4rem">End Date</label>
+                    <md-datepicker ng-model="vm.search.endDate" md-min-date="vm.search.startDate" md-placeholder="End Date"></md-datepicker>
+
+
+                </div>
+
+                <div class="col-md-2"> <br>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="card" ng-if="!svm.loading">
+    <div class="card-block">
+        <div class="md-form">
+            <input placeholder="Filter Results" ng-model="filterPay" type="text" id="form5" class="form-control">
+        </div>
+
+
+        <table class="table  table-striped table-hover">
+            <thead>
+                <tr>
+                    <td></td>
+                    <td>PID</td>
+                    <td>Date</td>
+                    <td>Description</td>
+
+                    <td>Income</td>
+                    <td>Expenditure</td>
+                    <td ng-if="$user.type == 'admin'"></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="x in vm.payments | filter:filterPay">
+                    <td>
+                        <i ng-if="x.type == 'Expenditure'" class="fa fa-minus-circle red-text" aria-hidden="true"></i>
+
+                        <i ng-if="x.type == 'Income'" class="fa fa-plus-circle green-text" aria-hidden="true"></i>
+                    </td>
+                    <td>{{x.id | numberFixedLen:3 }}</td>
+                    <td>{{x.date}}</td>
+                    <td>{{x.description}}</td>
+                    <td>{{ (x.type == 'Income')?(x.amount | currency:"Rs. ") : "-" }}</td>
+                    <td>{{ (x.type == 'Expenditure')?(x.amount | currency:"Rs. ") : "-" }}</td>
+                    <td style="padding: 0cm" ng-if="$user.type == 'admin'">
+                        <button ng-disabled="$user.type != 'admin'" ng-click="vm.deletePayment($event,x.id)" type="button" class="btn btn-danger btn-sm" style="padding: 8px;"> 
+    <i class="fa fa-trash" aria-hidden="true"></i>
+</button>
+                    </td>
+                </tr>
+
+
+            </tbody>
+            <tfoot ng-if="filterPay ===''||filterPay===undefined||filterPay==null">
+                <tr style="border-top:3px solid #E0E0E0;margin-top:1rem;">
+                    <td colspan="4"> Total</td>
+
+                    <td>{{vm.debit | currency:"Rs. "}}</td>
+                    <td>{{vm.credit | currency:"Rs. "}}</td>
+                    <td ng-if="$user.type == 'admin'"></td>
+                </tr>
+                <tr style="border-top:3px solid #E0E0E0">
+                    <td colspan="5"> Gross Profit</td>
+                    <td class="success" style="border-bottom:4px solid #BDBDBD; border-bottom-style: double"> {{(vm.debit - vm.credit) | currency:"Rs. "}}</td>
+                    <td ng-if="$user.type == 'admin'"></td>
+
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+<div ng-if="vm.loading" class="row">
+    <div class="col-md-5">
+
+    </div>
+    <!--
+    -->
+    <div class="col-md-5 vcenter" style="padding-left:2rem;padding-top:6rem;">
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,106 @@
+<!--Navbar-->
+<nav class="navbar navbar-fixed-top navbar-dark bg-primary">
+
+
+
+    <div class="container" ng-controller="mainController as vm">
+
+        <!--Collapse content-->
+        <div class="   ">
+            <!--Navbar Brand-->
+            <!--<a class="navbar-brand">
+
+            </a>-->
+            <ul class="nav   navbar-nav  pull-left" style="width:50%;margin-right:0cm">
+                <div>
+                    <ol class="breadcrumb">
+                        <li ng-repeat=" x in $breadcrumbs" class="breadcrumb-item" ng-class="{'active':x.active}"><a href="" ng-click="vm.navigate(x.sref)">{{x.name}}</a></li>
+                    </ol>
+                </div>
+            </ul>
+
+            <!--Links-->
+            <ul class="nav   navbar-nav  nav-right-flex">
+                <li ng-if="$user.type == 'admin'" class="nav-item {{ ($navigation == 'Dashboard')?'active':''}}">
+                    <a class="nav-link" href="" ui-sref="dashboard"> Dashboard</a>
+                </li>
+                <li class="nav-item btn-group {{ ($navigation == 'Customer')?'active':''}}">
+                    <a class="nav-link dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Customers</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <a ui-sref="customer-list" class="dropdown-item">Search</a>
+                        <a ui-sref="customer-new" class="dropdown-item">New Customer</a>
+                    </div>
+                </li>
+
+                <li class="nav-item btn-group  {{ ($navigation == 'Payment')?'active':''}}">
+                    <a class="nav-link dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Payments</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <a ui-sref="payment-list" class="dropdown-item">Search</a>
+                        <a ui-sref="payment-add" class="dropdown-item">New Payment</a>
+                    </div>
+                </li>
+
+                <!--<li class="nav-item" ui-sref-active="active">
+                    <a class="nav-link" href=""> Settings</a>
+                </li>-->
+                <!--<li class="nav-item">
+                    <a class="nav-link" href="" ng-click="vm.logout()"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a>
+                </li>-->
+                <!--<li class="nav-item avatar active dropdown">
+                    <a class="nav-link dropdown-toggle waves-effect waves-light" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <img src="./images/user.png" class="img-fluid rounded-circle">
+                    </a>
+                    <div class="dropdown-menu dropdown-warning" aria-labelledby="dropdownMenu1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+
+                        <a class="nav-link" href="" ng-click="vm.logout()"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a>
+
+                    </div>
+                </li>-->
+                <li class="nav-item   avatar dropdown" style="padding-left:1rem;">
+                    <a class="nav-link dropdown-toggle  " id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="./images/user.png" class="img-fluid rounded-circle"></a>
+                    <div class="dropdown-menu dropdown-warning" aria-labelledby="dropdownMenu3" style="margin-right: 3rem;">
+                        <a class="dropdown-item" href="" ng-click="vm.logout()"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a>
+
+                    </div>
+                </li>
+            </ul>
+
+
+        </div>
+        <!--/.Collapse content-->
+
+    </div>
+
+</nav>
+
+<div class="container" style="padding-top:7rem">
+
+
+
+    <div ui-view=""></div>
+
+</div>
+
+<!--Footer-->
+<footer>
+
+
+
+    <!--Copyright-->
+    <div class="footer-copyright" style="padding-top:1rem;">
+        <div class="container-fluid">
+            <div class="center-block">
+                <center style="color:#757575;font-size:80%"> © 2017 Copyright : Dimuthu De Silva & Nilesh Jayanandana. Contact 071-5910955 for more Information.</center>
+            </div>
+
+
+        </div>
+    </div>
+    <!--/.Copyright-->
+
+</footer>
+<!--/.Footer-->
+
+
+</div>
