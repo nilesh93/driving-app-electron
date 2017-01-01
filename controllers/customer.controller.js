@@ -293,7 +293,9 @@ function CustomerViewCtrl($state, $mdDialog, ngToast, $mdToast, $scope, $rootSco
     }
 
     vm.editExam = function(ev, exam) {
+
         angular.copy(exam, vm.selectedExam);
+
 
         vm.selectedExam.examDate = new Date(moment(exam.date).valueOf());
         vm.dialog = $mdDialog.show({

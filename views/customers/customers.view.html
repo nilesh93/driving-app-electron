@@ -4,13 +4,17 @@
         <div class="card">
             <div class="card-block">
 
+
                 <div class="form-header {{(vm.customer.status =='active')?'green':'red'}}  " style="width:4rem;margin-bottom:0cm">
+
                     <h4><i class=" fa fa-user  "></i></h4>
                 </div>
 
                 <div class="row">
                     <div class="col-md-12">
+
                         <h5 class="pull-right"> {{(vm.customer.status =='active')?'ACTIVE':'INACTIVE'}} - {{vm.customer.id | numberFixedLen:4}}</h5>
+
 
                     </div>
                 </div>
@@ -211,7 +215,9 @@
                                 <td>{{x.time}}</td>
                                 <td>
 
+
                                     <span style="text-transform: capitalize" class="tag tag-{{(x.status =='Pased')?'success':(x.status =='Failed')?'danger':'default'}}">{{x.status}}</span>
+
                                 </td>
 
                                 <td style="padding: 0cm">
