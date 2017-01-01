@@ -19,12 +19,13 @@ function DashboardCtrl($rootScope, $scope, $http, $config) {
     ];
 
     vm.dashboardData = {};
-
+    vm.loading = true;
     $http.get($config.host + "dashboard").then((data) => {
         vm.dashboardData = data.data;
 
         console.log(vm.dashboardData);
         buildChart(vm.dashboardData.payments);
+        vm.loading = false;
     });
 
     vm.months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "Decemeber"];
@@ -115,22 +116,8 @@ function DashboardCtrl($rootScope, $scope, $http, $config) {
     $scope.onClick = function(points, evt) {
         console.log(points, evt);
     };
-    $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
+    $scope.datasetOverride = [];
     $scope.options = {
-        scales: {
-            yAxes: [{
-                    id: 'y-axis-1',
-                    type: 'linear',
-                    display: true,
-                    position: 'left'
-                },
-                {
-                    id: 'y-axis-2',
-                    type: 'linear',
-                    display: true,
-                    position: 'right'
-                }
-            ]
-        }
+
     };
 }

@@ -29,4 +29,51 @@ angular.module('driving-school.main', [])
             });
 
         }
+    })
+    .controller("loginController", function($config, $base64, $state, ngToast, $rootScope) {
+        var vm = this;
+
+        vm.userData = {
+            username: '',
+            password: ''
+        };
+
+        vm.error = false;
+
+        vm.login = function() {
+            vm.error = false;
+            ngToast.dismiss();
+
+            var temp = '';
+
+            vm.userData.type = 'admin';
+            if ($config.other.indexOf($base64.encode(JSON.stringify(vm.userData))) !== -1) {
+
+                $rootScope.$user = vm.userData;
+                $state.go("dashboard");
+            } else {
+                vm.userData.type = 'employee';
+
+                if ($config.other.indexOf($base64.encode(JSON.stringify(vm.userData))) !== -1) {
+                    $rootScope.$user = vm.userData;
+                    $state.go("customer-list");
+
+                } else {
+                    vm.error = true;
+
+                    ngToast.error({
+                        dismissButton: true,
+                        content: 'Invalid Login!',
+                        timeout: 7000,
+                        dismissOnClick: false,
+                        animation: 'slide'
+                    });
+
+                }
+            }
+
+
+
+
+        };
     });

@@ -40,7 +40,7 @@ function PaymentListCtrl(PaymentService, $rootScope, $mdDialog, ngToast) {
         }
     ];
     vm.search = {};
-
+    vm.loading = true;
     vm.search.startDate = new Date();
     vm.search.endDate = new Date();
 
@@ -74,6 +74,7 @@ function PaymentListCtrl(PaymentService, $rootScope, $mdDialog, ngToast) {
                     return 0;
                 }
             });
+            vm.loading = false;
         });
 
     };
@@ -106,7 +107,13 @@ function PaymentListCtrl(PaymentService, $rootScope, $mdDialog, ngToast) {
             PaymentService.deletePayment(id).then((data) => {
                 vm.searchPayment();
                 ngToast.dismiss();
-                ngToast.success('Deleted Successfully!');
+                ngToast.success({
+                    dismissButton: true,
+                    content: 'Deleted Successfully!',
+                    timeout: 7000,
+                    dismissOnClick: false,
+                    animation: 'slide'
+                });
 
             });
         });
@@ -151,12 +158,14 @@ function PaymentAddCtrl($scope, ngToast, $rootScope, CustomerService, PaymentSer
     }
 
     vm.savePayment = function() {
+
         var pay = vm.payment;
         if (pay.type == 'Income') {
-            pay.remarkSave = pay.remark;
+            pay.remarkSave = pay.remark || '';
 
             if (pay.cid) {
                 var temp = _.find(vm.customers, _.matchesProperty('id', parseInt(pay.cid)));
+                console.log("here", temp, vm.payment);
                 if (temp) {
                     pay.remarkSave += " - " + temp.fullname;
                     pSave(pay);
@@ -183,9 +192,31 @@ function PaymentAddCtrl($scope, ngToast, $rootScope, CustomerService, PaymentSer
                         pSave(pay);
                     });
                 }
+            } else {
+                var confirm = $mdDialog.confirm({
+                        onComplete: function afterShowAnimation() {
+                            var $dialog = angular.element(document.querySelector('md-dialog'));
+                            var $actionsSection = $dialog.find('md-dialog-actions');
+                            var $cancelButton = $actionsSection.children()[0];
+                            var $confirmButton = $actionsSection.children()[1];
+                            angular.element($confirmButton).addClass('md-raised md-success');
+
+                        }
+                    })
+                    .title('Sorry! Customer Id not defined')
+                    .textContent('Do you want to continue & save anyway?')
+                    .ariaLabel('')
+                    .ok('Continue')
+                    .cancel('No');
+
+                $mdDialog.show(confirm).then(function() {
+                    pay.remarkSave += " - No Customer Selected";
+                    pay.cid = null;
+                    pSave(pay);
+                });
             }
         } else {
-            pay.remarkSave = pay.remark;
+            pay.remarkSave = pay.remark || '';
             pay.cid = null;
             pSave(pay);
         }
@@ -204,8 +235,15 @@ function PaymentAddCtrl($scope, ngToast, $rootScope, CustomerService, PaymentSer
 
         PaymentService.savePayment(pay).then((data) => {
             ngToast.dismiss();
-            ngToast.success('Saved Successfully!');
+            ngToast.success({
+                dismissButton: true,
+                content: 'Saved Successfully!',
+                timeout: 7000,
+                dismissOnClick: false,
+                animation: 'slide'
+            });
             vm.payment = {};
+            vm.payment.type = "Income";
         });
 
     }

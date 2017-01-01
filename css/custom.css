@@ -65,3 +65,72 @@ md-autocomplete {
     line-height: 3rem;
     border-bottom: 1px solid #BDBDBD;
 }
+
+.alert {
+    margin-top: 0.2rem;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    font-size: 1.2rem;
+    color: white;
+}
+
+.alert-success {
+    background-color: #18bc9c;
+    border-color: #18bc9c;
+    color: #ffffff;
+}
+
+.alert-success hr {
+    border-top-color: #15a589;
+}
+
+.alert-success .alert-link {
+    color: #e6e6e6;
+}
+
+.alert-info {
+    background-color: #3498db;
+    border-color: #3498db;
+    color: #ffffff;
+}
+
+.alert-info hr {
+    border-top-color: #258cd1;
+}
+
+.alert-info .alert-link {
+    color: #e6e6e6;
+}
+
+.alert-warning {
+    background-color: #f39c12;
+    border-color: #f39c12;
+    color: #ffffff;
+}
+
+.alert-warning hr {
+    border-top-color: #e08e0b;
+}
+
+.alert-warning .alert-link {
+    color: #e6e6e6;
+}
+
+.alert-danger {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+    color: #ffffff;
+}
+
+.alert-danger hr {
+    border-top-color: #e43725;
+}
+
+.alert-danger .alert-link {
+    color: #e6e6e6;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}

@@ -12,6 +12,7 @@ require('angular-sanitize');
 require('ng-toast');
 require('chart.js');
 require('angular-chart.js');
+require('angular-base64');
 
 require('./controllers/mainController');
 require('./controllers/customer.controller');
@@ -34,6 +35,7 @@ angular.module('driving-school', [
         'ngSanitize',
         'ngToast',
         'chart.js',
+        'base64',
 
 
 
@@ -60,7 +62,8 @@ angular.module('driving-school', [
                 abstract: false,
                 views: {
                     layout: {
-                        templateUrl: './views/main.login.html'
+                        templateUrl: './views/main.login.html',
+                        controller: 'loginController as vm'
                     }
                 }
             })
@@ -102,9 +105,17 @@ angular.module('driving-school', [
             });
 
     })
-    .run(($state, $rootScope) => {
+    .run(($state, $rootScope, $base64) => {
         $rootScope.$breadcrumbs = [];
-        $state.go('dashboard');
+        $state.go('login');
+
+        var userCreate = {
+            username: '',
+            password: '',
+            type: 'employee' // choose from employee or admin
+        }
+
+        // console.log($base64.encode(JSON.stringify(userCreate)));
     })
     .filter('numberFixedLen', () => (a, b) => (1e4 + "" + a).slice(-b))
     .directive('format', ['$filter', function($filter) {

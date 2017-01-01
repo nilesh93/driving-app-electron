@@ -1,4 +1,4 @@
-<div class="row" style="padding-bottom: 1rem">
+<div ng-if="!vm.loading" class="row" style="padding-bottom: 1rem">
     <div class="col-md-3">
         <br>
         <div class="card">
@@ -363,4 +363,26 @@
 
     </div>
 
+</div>
+
+
+<div ng-if="vm.loading" class="row">
+    <div class="col-md-5">
+
+    </div>
+    <!--
+    -->
+    <div class="col-md-5 vcenter" style="padding-left:2rem;padding-top:6rem;">
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>

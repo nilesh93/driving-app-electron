@@ -21,7 +21,7 @@
 
             <!--Links-->
             <ul class="nav   navbar-nav  nav-right-flex">
-                <li class="nav-item {{ ($navigation == 'Dashboard')?'active':''}}">
+                <li ng-if="$user.type == 'admin'" class="nav-item {{ ($navigation == 'Dashboard')?'active':''}}">
                     <a class="nav-link" href="" ui-sref="dashboard"> Dashboard</a>
                 </li>
                 <li class="nav-item btn-group {{ ($navigation == 'Customer')?'active':''}}">
@@ -79,6 +79,28 @@
 
 
     <div ui-view=""></div>
+
 </div>
+
+<!--Footer-->
+<footer>
+
+
+
+    <!--Copyright-->
+    <div class="footer-copyright" style="padding-top:1rem;">
+        <div class="container-fluid">
+            <div class="center-block">
+                <center style="color:#757575;font-size:80%"> © 2017 Copyright : Dimuthu De Silva & Nilesh Jayanandana. Contact 071-5910955 for more Information.</center>
+            </div>
+
+
+        </div>
+    </div>
+    <!--/.Copyright-->
+
+</footer>
+<!--/.Footer-->
+
 
 </div>

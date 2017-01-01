@@ -100,12 +100,19 @@ function CustomerNewCtrl(CustomerService, $rootScope, ngToast, $scope) {
         ngToast.info({
             dismissOnTimeout: false,
             content: "Saving..."
+
         });
         $scope.customer.fees = Number($scope.customer.fees.replace(/[^0-9\.]+/g, ""));
         $scope.customer.joinDateString = moment($scope.customer.joinDate).format("YYYY-MM-DD");
         CustomerService.saveCustomer($scope.customer).then((data) => {
             ngToast.dismiss();
-            ngToast.success('Saved Successfully!');
+            ngToast.success({
+                dismissButton: true,
+                content: 'Saved Successfully!',
+                timeout: 7000,
+                dismissOnClick: false,
+                animation: 'slide'
+            });
             $scope.customer = {};
 
         });
@@ -125,7 +132,7 @@ function CustomerViewCtrl($state, $mdDialog, ngToast, $mdToast, $scope, $rootSco
 
     vm.exam = {};
 
-
+    vm.loading = true;
     vm.exams = [];
     vm.payments = [];
 
@@ -178,6 +185,7 @@ function CustomerViewCtrl($state, $mdDialog, ngToast, $mdToast, $scope, $rootSco
             ];
 
             buildCustomer();
+            vm.loading = false;
         });
     }
 
@@ -206,7 +214,13 @@ function CustomerViewCtrl($state, $mdDialog, ngToast, $mdToast, $scope, $rootSco
             vm.exam.type = "Practical";
             construct();
             ngToast.dismiss();
-            ngToast.success('Saved Successfully!');
+            ngToast.success({
+                dismissButton: true,
+                content: 'Saved Successfully!',
+                timeout: 7000,
+                dismissOnClick: false,
+                animation: 'slide'
+            });
 
         });
     };
@@ -237,7 +251,13 @@ function CustomerViewCtrl($state, $mdDialog, ngToast, $mdToast, $scope, $rootSco
             CustomerService.deleteExam(id).then((data) => {
                 construct();
                 ngToast.dismiss();
-                ngToast.success('Deleted Successfully!');
+                ngToast.success({
+                    dismissButton: true,
+                    content: 'Deleted Successfully!',
+                    timeout: 7000,
+                    dismissOnClick: false,
+                    animation: 'slide'
+                });
 
             });
         });
@@ -258,7 +278,13 @@ function CustomerViewCtrl($state, $mdDialog, ngToast, $mdToast, $scope, $rootSco
         CustomerService.updateCustomer(vm.customerID, $scope.customer).then((data) => {
             ngToast.dismiss();
 
-            ngToast.success('Customer Updated Successfully!');
+            ngToast.success({
+                dismissButton: true,
+                content: 'Updated Successfully!',
+                timeout: 7000,
+                dismissOnClick: false,
+                animation: 'slide'
+            });
             construct();
         }, () => {
             ngToast.dismiss();
@@ -296,7 +322,13 @@ function CustomerViewCtrl($state, $mdDialog, ngToast, $mdToast, $scope, $rootSco
         CustomerService.updateExam(vm.selectedExam.id, vm.selectedExam).then((data) => {
             ngToast.dismiss();
 
-            ngToast.success('Exam Updated Successfully!');
+            ngToast.success({
+                dismissButton: true,
+                content: 'Updated Successfully!',
+                timeout: 7000,
+                dismissOnClick: false,
+                animation: 'slide'
+            });
             vm.hide();
             construct();
         }, () => {

@@ -39,7 +39,7 @@
 </div>
 
 
-<div class="card">
+<div class="card" ng-if="!svm.loading">
     <div class="card-block">
         <div class="md-form">
             <input placeholder="Filter Results" ng-model="filterPay" type="text" id="form5" class="form-control">
@@ -56,7 +56,7 @@
 
                     <td>Income</td>
                     <td>Expenditure</td>
-                    <td></td>
+                    <td ng-if="$user.type == 'admin'"></td>
                 </tr>
             </thead>
             <tbody>
@@ -71,8 +71,8 @@
                     <td>{{x.description}}</td>
                     <td>{{ (x.type == 'Income')?(x.amount | currency:"Rs. ") : "-" }}</td>
                     <td>{{ (x.type == 'Expenditure')?(x.amount | currency:"Rs. ") : "-" }}</td>
-                    <td style="padding: 0cm">
-                        <button ng-click="vm.deletePayment($event,x.id)" type="button" class="btn btn-danger btn-sm" style="padding: 8px;"> 
+                    <td style="padding: 0cm" ng-if="$user.type == 'admin'">
+                        <button ng-disabled="$user.type != 'admin'" ng-click="vm.deletePayment($event,x.id)" type="button" class="btn btn-danger btn-sm" style="padding: 8px;"> 
     <i class="fa fa-trash" aria-hidden="true"></i>
 </button>
                     </td>
@@ -81,20 +81,42 @@
 
             </tbody>
             <tfoot ng-if="filterPay ===''||filterPay===undefined||filterPay==null">
-                <tr style="border-top:3px solid #E0E0E0">
+                <tr style="border-top:3px solid #E0E0E0;margin-top:1rem;">
                     <td colspan="4"> Total</td>
 
                     <td>{{vm.debit | currency:"Rs. "}}</td>
                     <td>{{vm.credit | currency:"Rs. "}}</td>
-                    <td></td>
+                    <td ng-if="$user.type == 'admin'"></td>
                 </tr>
                 <tr style="border-top:3px solid #E0E0E0">
                     <td colspan="5"> Gross Profit</td>
                     <td class="success" style="border-bottom:4px solid #BDBDBD; border-bottom-style: double"> {{(vm.debit - vm.credit) | currency:"Rs. "}}</td>
-                    <td></td>
+                    <td ng-if="$user.type == 'admin'"></td>
 
                 </tr>
             </tfoot>
         </table>
+    </div>
+</div>
+
+
+<div ng-if="vm.loading" class="row">
+    <div class="col-md-5">
+
+    </div>
+    <!--
+    -->
+    <div class="col-md-5 vcenter" style="padding-left:2rem;padding-top:6rem;">
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

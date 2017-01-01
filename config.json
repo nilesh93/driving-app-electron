@@ -1,3 +1,8 @@
 {
-    "host": "http://driving-api.apps.reactive-solutions.xyz/"
+    "host": "http://driving-api.apps.reactive-solutions.xyz/",
+    "other": [
+        "eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjIwMTciLCJ0eXBlIjoiYWRtaW4ifQ==",
+        "eyJ1c2VybmFtZSI6ImVtcGxveWVlIiwicGFzc3dvcmQiOiJlbXBsb3llZSIsInR5cGUiOiJlbXBsb3llZSJ9"
+
+    ]
 }

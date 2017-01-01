@@ -36,6 +36,7 @@
   "dependencies": {
     "angular-animate": "1.5.10",
     "angular-aria": "1.5.10",
+    "angular-base64": "^2.0.5",
     "angular-chart.js": "^1.1.1",
     "angular-material": "^1.1.1",
     "angular-material-datetimepicker": "^1.4.0",

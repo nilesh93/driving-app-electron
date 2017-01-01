@@ -1,5 +1,5 @@
 <br>
-<div class="row">
+<div ng-if="!vm.loading" class="row">
     <div class="col-md-4">
         <div class="card">
             <div class="card-block">
@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h5 class="pull-right">ACTIVE CUSTOMERS</h5>
-                        <progress class="progress progress-info" value="50" max="100">50%</progress>
+                        <progress class="progress progress-success" value="{{(vm.dashboardData.active/100)*100}}" max="100">50%</progress>
                     </div>
                 </div>
                 <div class="row">
@@ -32,12 +32,12 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h5 class="pull-right">MONEY DUE</h5>
-                        <progress class="progress progress-warning" value="70" max="100">50%</progress>
+                        <progress class="progress progress-danger" value="{{((vm.dashboardData.due[0].due||1))/100000*100}}" max="100">50%</progress>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="pull-right"><small>RS.</small> {{vm.dashboardData.due[0].due | currency:""}}</h2>
+                        <h2 class="pull-right"><small>RS.</small> {{(vm.dashboardData.due[0].due||0) | currency:""}}</h2>
                     </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h5 class="pull-right">TOTAL PROFIT <small>PAST 6 MONTHS </small></h5>
-                        <progress class="progress progress-warning" value="70" max="100">50%</progress>
+                        <progress class="progress progress-info" value="{{(vm.totalProfit/600000)*100}}" max="100">50%</progress>
                     </div>
                 </div>
                 <div class="row">
@@ -74,9 +74,30 @@
                     <h4>Payment Statistics</h4>
                 </div>
                 <br>
-                <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick">
-</canvas>
+                <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
             </div>
         </div>
+    </div>
+</div>
+
+
+<div ng-if="vm.loading" class="row">
+    <div class="col-md-5">
+
+    </div>
+    <!--
+    -->
+    <div class="col-md-5 vcenter" style="padding-left:2rem;padding-top:6rem;">
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
