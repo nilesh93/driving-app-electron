@@ -12,7 +12,7 @@ function PaymentService($http, $config) {
     };
 
     function getPayments(params) {
-        return $http.get($config.host + "payments/" + params)
+        return $http.get($config.host + "payments" + params)
     }
 
     function savePayment(params) {
@@ -39,6 +39,10 @@ function PaymentListCtrl(PaymentService, $rootScope, $mdDialog, ngToast) {
             active: true
         }
     ];
+
+    vm.add2Numbers = function(num1, num2) {
+        return parseFloat(num1) + parseFloat(num2);
+    };
     vm.search = {};
     vm.loading = true;
     vm.search.startDate = new Date();
@@ -63,13 +67,13 @@ function PaymentListCtrl(PaymentService, $rootScope, $mdDialog, ngToast) {
                 if (o.type == 'Expenditure') {
                     return o.amount;
                 } else {
-                    return 0;
+                    return o.stamp;
                 }
             });
 
             vm.debit = _.sumBy(vm.payments, function(o) {
                 if (o.type == 'Income') {
-                    return o.amount;
+                    return o.amount + parseFloat(o.stamp);
                 } else {
                     return 0;
                 }
@@ -165,7 +169,7 @@ function PaymentAddCtrl($scope, ngToast, $rootScope, CustomerService, PaymentSer
 
             if (pay.cid) {
                 var temp = _.find(vm.customers, _.matchesProperty('id', parseInt(pay.cid)));
-                console.log("here", temp, vm.payment);
+
                 if (temp) {
                     pay.remarkSave += " - " + temp.fullname;
                     pSave(pay);
@@ -187,7 +191,7 @@ function PaymentAddCtrl($scope, ngToast, $rootScope, CustomerService, PaymentSer
                         .cancel('No');
 
                     $mdDialog.show(confirm).then(function() {
-                        pay.remarkSave += " (No Customer Selected)";
+                        pay.remarkSave += "";
                         pay.cid = null;
                         pSave(pay);
                     });
@@ -210,7 +214,7 @@ function PaymentAddCtrl($scope, ngToast, $rootScope, CustomerService, PaymentSer
                     .cancel('No');
 
                 $mdDialog.show(confirm).then(function() {
-                    pay.remarkSave += " - No Customer Selected";
+                    pay.remarkSave += "";
                     pay.cid = null;
                     pSave(pay);
                 });
@@ -232,7 +236,9 @@ function PaymentAddCtrl($scope, ngToast, $rootScope, CustomerService, PaymentSer
         pay.paymentDateSave = moment(pay.paymentDate).format("YYYY-MM-DD");
 
         pay.amount = Number(pay.amount.replace(/[^0-9\.]+/g, ""));
-
+        if (pay.type === "Income") {
+            pay.amount = pay.amount - parseFloat(pay.stampfee);
+        }
         PaymentService.savePayment(pay).then((data) => {
             ngToast.dismiss();
             ngToast.success({

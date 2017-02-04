@@ -52,6 +52,17 @@
                     </div>
                 </div>
 
+                <div class="col-md-6" ng-if="vm.payment.type == 'Income'">
+                    <div class="md-form">
+                        <label class="active">Enter Bill No</label>
+
+
+                        <input style="margin-bottom:0.5rem" required type="text" name="billno" ng-model="vm.payment.billno" placeholder="Enter Bill No" class="form-control">
+
+
+                    </div>
+                </div>
+
             </div>
 
             <div class="row" style="padding : 1rem;padding-left:3rem;">
@@ -76,7 +87,16 @@
                 </div>
             </div>
             <div class="row ">
-                <div class="col-md-9 "></div>
+
+                <div class="col-md-4" style="padding-left:4rem;">
+                    <div class="md-form" ng-if="vm.payment.type == 'Income'">
+
+                        <input style="margin-bottom:0.5rem" required type="text" format="number" name="stampfee" ng-model="vm.payment.stampfee" placeholder="Enter Stamp Fee" class="form-control">
+                        <label class="active">Stamp Fee</label>
+
+                    </div>
+                </div>
+                <div class="col-md-5 "></div>
                 <div class="col-md-2 ">
                     <button type="submit" class="btn btn-info btn-block "> Save</button>
                 </div>

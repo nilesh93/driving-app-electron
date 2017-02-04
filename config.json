@@ -1,8 +1,30 @@
 {
-    "host": "http://driving-api.apps.reactive-solutions.xyz/",
+    "host": "http://localhost:8000/",
+    "prod": "//http://driving-api.apps.reactive-solutions.xyz/",
     "other": [
         "eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbjIwMTciLCJ0eXBlIjoiYWRtaW4ifQ==",
         "eyJ1c2VybmFtZSI6ImVtcGxveWVlIiwicGFzc3dvcmQiOiJlbXBsb3llZSIsInR5cGUiOiJlbXBsb3llZSJ9"
 
+    ],
+    "vehicles": [{
+            "name": "A-Motor Cycle",
+            "training": false,
+            "selected": false
+        },
+        {
+            "name": "B-Car",
+            "training": false,
+            "selected": false
+        },
+        {
+            "name": "B1-Three wheeler",
+            "training": false,
+            "selected": false
+        },
+        {
+            "name": "D-Bus",
+            "training": false,
+            "selected": false
+        }
     ]
 }

@@ -81,7 +81,7 @@ function CustomerCtrl(CustomerService, $state, $rootScope) {
 }
 
 
-function CustomerNewCtrl(CustomerService, $rootScope, ngToast, $scope) {
+function CustomerNewCtrl(CustomerService, $rootScope, ngToast, $scope, $config) {
     var vm = this;
     $rootScope.$navigation = "Customer";
     $rootScope.$breadcrumbs = [{
@@ -95,6 +95,10 @@ function CustomerNewCtrl(CustomerService, $rootScope, ngToast, $scope) {
             active: true
         }
     ];
+    vm.vehicles = [];
+
+    angular.copy($config.vehicles, vm.vehicles);
+
     $scope.customer = {};
     vm.saveCustomer = function() {
         ngToast.info({
@@ -104,6 +108,8 @@ function CustomerNewCtrl(CustomerService, $rootScope, ngToast, $scope) {
         });
         $scope.customer.fees = Number($scope.customer.fees.replace(/[^0-9\.]+/g, ""));
         $scope.customer.joinDateString = moment($scope.customer.joinDate).format("YYYY-MM-DD");
+
+        $scope.customer.vehicles = JSON.stringify(vm.vehicles);
         CustomerService.saveCustomer($scope.customer).then((data) => {
             ngToast.dismiss();
             ngToast.success({
@@ -114,12 +120,12 @@ function CustomerNewCtrl(CustomerService, $rootScope, ngToast, $scope) {
                 animation: 'slide'
             });
             $scope.customer = {};
-
+            angular.copy($config.vehicles, vm.vehicles);
         });
     };
 }
 
-function CustomerViewCtrl($state, $mdDialog, ngToast, $mdToast, $scope, $rootScope, $stateParams, CustomerService) {
+function CustomerViewCtrl($state, $mdDialog, ngToast, $config, $mdToast, $scope, $rootScope, $stateParams, CustomerService) {
     var vm = this;
     $rootScope.$navigation = "Customer";
 
@@ -140,6 +146,11 @@ function CustomerViewCtrl($state, $mdDialog, ngToast, $mdToast, $scope, $rootSco
     vm.due = 0;
     vm.selectedExam = {};
     vm.buildCustomer = buildCustomer;
+    vm.add2Numbers = function(num1, num2) {
+        return parseFloat(num1) + parseFloat(num2);
+    };
+    vm.vehicles = [];
+    angular.copy($config.vehicles, vm.vehicles);
 
     $rootScope.$breadcrumbs = [{
             name: 'Customers',
@@ -165,7 +176,7 @@ function CustomerViewCtrl($state, $mdDialog, ngToast, $mdToast, $scope, $rootSco
             vm.exams = data.data.exams;
             vm.payments = data.data.payments;
 
-            vm.totalPaid = _.sumBy(vm.payments, 'amount');
+            vm.totalPaid = parseFloat(_.sumBy(vm.payments, 'amount')) + parseFloat(_.sumBy(vm.payments, 'stamp'));
             vm.due = vm.customer.total_price - vm.totalPaid;
 
             $rootScope.$breadcrumbs = [{
@@ -200,6 +211,10 @@ function CustomerViewCtrl($state, $mdDialog, ngToast, $mdToast, $scope, $rootSco
         $scope.customer.fees = vm.customer.total_price.toFixed(2);
         $scope.customer.nic = vm.customer.nic;
         $scope.customer.status = vm.customer.status;
+        $scope.customer.regno = vm.customer.regno;
+        if (vm.customer.vehicles && vm.customer.vehicles !== null && vm.customer.vehicles !== "") {
+            vm.vehicles = JSON.parse(vm.customer.vehicles);
+        }
     }
 
     vm.saveExam = function() {
@@ -276,6 +291,7 @@ function CustomerViewCtrl($state, $mdDialog, ngToast, $mdToast, $scope, $rootSco
             $scope.customer.newFees = Number($scope.customer.fees.replace(/[^0-9\.]+/g, ""));
             delete $scope.customer.fees;
         }
+        $scope.customer.vehicles = JSON.stringify(vm.vehicles);
         CustomerService.updateCustomer(vm.customerID, $scope.customer).then((data) => {
             ngToast.dismiss();
 

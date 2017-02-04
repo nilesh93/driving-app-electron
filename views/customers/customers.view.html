@@ -117,7 +117,7 @@
                                 <td>{{x.id | numberFixedLen:3}}</td>
                                 <td>{{x.date}}</td>
                                 <td>{{x.description}}</td>
-                                <td style="text-align: right">{{x.amount | currency:"Rs. "}}</td>
+                                <td style="text-align: right">{{vm.add2Numbers(x.amount,x.stamp) | currency:"Rs. "}}</td>
 
                             </tr>
 
@@ -269,6 +269,22 @@
                             </div>
 
                         </div>
+                        <div class="row" style="padding-bottom: 1rem;">
+                            <div class="col-md-10" style="padding-left:4rem">
+
+                                <div class="md-form form-group">
+                                    <input style="margin-bottom:0.5rem" type="text" name="regno" ng-model="customer.regno" placeholder="Enter Registration Number" class="form-control">
+                                    <label class="active">Registartion Number</label>
+
+                                </div>
+
+                            </div>
+
+                            <!--<div class="col-md-2">
+                           
+
+                            </div>-->
+                        </div>
                         <div class="row" style="padding-bottom: 1rem">
                             <div class="col-md-4">
 
@@ -354,7 +370,27 @@
 
                         </div>
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-8 ">
+                                <div class="row " ng-repeat="x in vm.vehicles">
+                                    <div class="col-md-6">
+                                        <fieldset class="form-group ">
+
+                                            <input type="checkbox" ng-model="vm.vehicles[$index].selected" id="main{{$index}}">
+                                            <label for="main{{$index}}">{{x.name}}</label>
+                                        </fieldset>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <fieldset class="form-group ">
+                                            <input ng-model="vm.vehicles[$index].training" class="filled-in" type="checkbox" id="train{{$index}}">
+                                            <label for="train{{$index}}">Training</label>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5 ">
 
                             </div>
                             <div class="col-md-3" style="padding-top:1rem;">

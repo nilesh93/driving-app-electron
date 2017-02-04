@@ -36,6 +36,25 @@
                 <div class="col-md-4" style="padding-left:4rem">
 
                     <div class="md-form form-group">
+                        <input style="margin-bottom:0.5rem" type="text" name="regno" ng-model="customer.regno" required placeholder="Enter Registration Number" class="form-control">
+                        <label class="active">Registartion Number</label>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-8">
+                    <!--<div class="md-form form-group">
+                        <label class="active">Customer Mobile</label>
+
+                    </div>-->
+
+                </div>
+            </div>
+            <div class="row" style="padding-bottom: 1rem;padding-right: 2rem;">
+                <div class="col-md-4" style="padding-left:4rem">
+
+                    <div class="md-form form-group">
                         <input style="margin-bottom:0.5rem" type="text" name="nic" ng-model="customer.nic" required placeholder="Enter NIC Number" class="form-control">
                         <label class="active">Customer NIC</label>
                         <div ng-messages="CustomerForm.nic.$error" ng-messages-multiple>
@@ -101,10 +120,37 @@
                     </div>
                 </div>
 
+                <div class="col-md-6 ">
+                    <div class="row " ng-repeat="x in vm.vehicles">
+                        <div class="col-md-6">
+                            <fieldset class="form-group ">
+
+                                <input type="checkbox" ng-model="vm.vehicles[$index].selected" id="main{{$index}}">
+                                <label for="main{{$index}}">{{x.name}}</label>
+                            </fieldset>
+                        </div>
+
+                        <div class="col-md-6">
+                            <fieldset class="form-group ">
+                                <input ng-model="vm.vehicles[$index].training" class="filled-in" type="checkbox" id="train{{$index}}">
+                                <label for="train{{$index}}">Training</label>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-md-6" style="padding-left:4rem">
+                </div>
                 <div class="col-md-3"></div>
                 <div class="col-md-2" style="padding-top:2rem;">
                     <button type="submit" class="btn btn-primary btn-block">Save</button>
                 </div>
+
             </div>
 
         </form>
